@@ -54,9 +54,14 @@ form .drop-list{
     display: flex;
     height: 45px;
     width: 115px;
+    border-radius: 5px;
     align-items: center;
-    background: slategray;
+    justify-content: center;
+    border: 1px solid #999;
 }
 .select-box select{
     width: auto;
+}
+.select-box img{
+    max-width: 25px;
 }
