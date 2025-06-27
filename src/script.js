@@ -19,3 +19,34 @@ const countryCodeMap = {
   CNY: "CN",
   KES: "KE"
 };
+// Load initial flags
+dropList.forEach((select, i) => {
+  for (let code in country_list) {
+    let selected = (i === 0 && code === "USD") || (i === 1 && code === "NPR") ? "selected" : "";
+    select.insertAdjacentHTML("beforeend", `<option value="${code}" ${selected}>${code}</option>`);
+  }
+  select.addEventListener("change", e => updateFlag(e.target));
+});
+
+// Update flag when currency changes
+function updateFlag(element) {
+  let code = element.value;
+  let countryCode = country_list[code];
+  let imgTag = element.parentElement.querySelector("img");
+  imgTag.src = `https://flagsapi.com/${countryCode}/flat/64.png`;
+}
+// Swap currencies on icon click
+exchangeIcon.addEventListener("click", () => {
+  let tempCode = fromCurrency.value;
+  fromCurrency.value = toCurrency.value;
+  toCurrency.value = tempCode;
+  updateFlag(fromCurrency);
+  updateFlag(toCurrency);
+  getExchangeRate();
+});
+
+// Fetch exchange rate on button click
+exchangeBtn.addEventListener("click", e => {
+  e.preventDefault();
+  getExchangeRate();
+});
