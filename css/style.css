@@ -11,14 +11,13 @@ body {
   justify-content: center;
   min-height: 100vh;
   background: pink;
-  /* background: #675afe; */
 }
 
 .wrapper {
   width: 500px;
   padding: 30px;
   border-radius: 12px;
-  background: #fff;
+  background: white;
 }
 
 .wrapper header {
