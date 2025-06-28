@@ -25,14 +25,13 @@ const country_list = {
 dropList.forEach((select, index) => {
   for (let code in country_list) {
     let selected =
-      (index === 0 && code === "USD") ||
-      (index === 1 && code === "NPR") ? "selected" : "";
+      (index === 0 && code === "USD") || (index === 1 && code === "NPR") ? "selected" : "";
     select.insertAdjacentHTML("beforeend", `<option value="${code}" ${selected}>${code}</option>`);
   }
   select.addEventListener("change", e => updateFlag(e.target));
 });
 
-// Update flag on currency change
+// Update flag
 function updateFlag(element) {
   const currencyCode = element.value;
   const countryCode = country_list[currencyCode];
@@ -40,9 +39,9 @@ function updateFlag(element) {
   imgTag.src = `https://flagsapi.com/${countryCode}/flat/64.png`;
 }
 
-// Swap currencies on icon click
+// Swap currencies
 exchangeIcon.addEventListener("click", () => {
-  let tempCode = fromCurrency.value;
+  const tempCode = fromCurrency.value;
   fromCurrency.value = toCurrency.value;
   toCurrency.value = tempCode;
   updateFlag(fromCurrency);
@@ -56,7 +55,7 @@ getButton.addEventListener("click", e => {
   getExchangeRate();
 });
 
-// Get exchange rate using Frankfurter API
+// Get exchange rate using open.er-api.com
 function getExchangeRate() {
   let amountVal = amountInput.value.trim();
   if (amountVal === "" || isNaN(amountVal) || Number(amountVal) <= 0) {
@@ -67,14 +66,15 @@ function getExchangeRate() {
   const from = fromCurrency.value;
   const to = toCurrency.value;
 
-  const url = `https://api.frankfurter.app/latest?amount=${amountVal}&from=${from}&to=${to}`;
+  const url = `https://open.er-api.com/v6/latest/${from}`;
 
   fetch(url)
     .then(res => res.json())
     .then(data => {
-      console.log("API response:", data); // debug
-      if (data && data.rates && data.rates[to]) {
-        const totalExRate = data.rates[to].toFixed(2);
+      console.log("API response:", data);
+      if (data && data.result === "success" && data.rates[to]) {
+        const rate = data.rates[to];
+        const totalExRate = (amountVal * rate).toFixed(2);
         exchangeRateTxt.innerText = `${amountVal} ${from} = ${totalExRate} ${to}`;
       } else {
         exchangeRateTxt.innerText = "Unable to get exchange rate";
@@ -90,4 +90,3 @@ function getExchangeRate() {
 window.addEventListener("load", () => {
   getExchangeRate();
 });
-
