@@ -16,19 +16,19 @@ It fetches real-time exchange rates from a public API and lets you quickly conve
 ##  Author
 
 **Jeremy Amani**  
-📧 [jeremyamani336@gmail.com](mailto:jeremyamani336@gmail.com)  
-📞 07123456789
+ [jeremyamani336@gmail.com](mailto:jeremyamani336@gmail.com)  
+ number: 07123456789
 
 ---
 
 ## Features
 
-- ✅ Real-time currency conversion using a free public API
-- ✅ Supports popular currencies: USD, EUR, NPR, INR, PKR, MAD, and more
-- ✅ Swap currencies with a single click
-- ✅ Dynamic country flags that update automatically
-- ✅ Modern, clean, and responsive design
-- ✅ Built entirely with HTML, CSS, and vanilla JavaScript
+-  Real-time currency conversion using a free public API
+-  Supports popular currencies: USD, EUR, NPR, INR, PKR, MAD, and more
+-  Swap currencies with a single click
+-  Dynamic country flags that update automatically
+-  Modern, clean, and responsive design
+-  Built entirely with HTML, CSS, and vanilla JavaScript
 
 ---
 
