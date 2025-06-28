@@ -6,7 +6,7 @@ const exchangeRateTxt = document.querySelector(".exchange-rate");
 const amountInput = document.querySelector(".amount input");
 const exchangeIcon = document.querySelector(".icon i");  // swap icon
 
-const country_list = {
+const country_list = {//options for the user
   USD: "US",
   NPR: "NP",
   INR: "IN",
