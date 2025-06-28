@@ -50,3 +50,36 @@ exchangeBtn.addEventListener("click", e => {
   e.preventDefault();
   getExchangeRate();
 });
+// Fetch and update exchange rate
+function getExchangeRate() {
+  let amountVal = amountInput.value;
+  if (amountVal === "" || isNaN(amountVal) || amountVal <= 0) {
+    amountVal = 1;
+    amountInput.value = "1";
+  }
+  exchangeRateTxt.innerText = "Getting exchange rate...";
+  let from = fromCurrency.value;
+  let to = toCurrency.value;
+
+  // Use exchangerate.host free API
+  let url = `https://api.exchangerate.host/convert?from=${from}&to=${to}&amount=${amountVal}`;
+
+  fetch(url)
+    .then(res => res.json())
+    .then(result => {
+      if (result.result) {
+        let totalExRate = result.result.toFixed(2);
+        exchangeRateTxt.innerText = `${amountVal} ${from} = ${totalExRate} ${to}`;
+      } else {
+        exchangeRateTxt.innerText = "Unable to get exchange rate";
+      }
+    })
+    .catch(() => {
+      exchangeRateTxt.innerText = "Something went wrong";
+    });
+}
+
+// Auto-load exchange rate on page load
+window.addEventListener("load", () => {
+  getExchangeRate();
+});
