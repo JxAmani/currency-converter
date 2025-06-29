@@ -17,7 +17,7 @@ It fetches real-time exchange rates from a public API and lets you quickly conve
 
 **Jeremy Amani**  
  [jeremyamani336@gmail.com](mailto:jeremyamani336@gmail.com)  
- number: 07123456789
+ number: 07123457789
 
 ---
 
